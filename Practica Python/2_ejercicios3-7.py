@@ -1,3 +1,5 @@
+# PUNTO 3
+
 # fifthPrime = 11
 # italyCapital = "Rome"
 # animal = "Peacock"
@@ -13,4 +15,84 @@
 # print(f"\n{dataDictionary}\n")
 
 #----------------------------------------------------------------
+
+# PUNTO 4
+
+# lista = []
+# lengthNumber = 50
+
+# for i in range(lengthNumber + 1):
+#     if i > 0:
+#         lista.append(i)
+
+# print(lista)
+
+#-----------------------------------------------------------------
+
+#PUNTO 5
+
+# lista = []
+# lengthNumber = 50
+
+# for n in range(lengthNumber + 1):
+#     if n % 2 == 0 and n > 0:
+#         lista.append(n)
+
+# print(lista)
+
+#-------------------------------------------------------------------------------
+
+# PUNTO 6 Y /
+
+# automovil = {
+#     'placa': 'AFT564',
+#     'marca': 'RENAULT',
+#     'valor': 85000000
+# }
+# print("Los datos del automóvil son los siguientes:")
+# for i in automovil:
+#     print(f"{i} {automovil[i]}")
+
+#------------------------------------------------------------------------------------
+
+#PUNTO 8 Y 9 Crear una lista, con datos por teclado, 
+# que contenga las ciudades turísticas de Colombia
+
+# ciudades = []
+# numCiudades = int(input('Establece el número de ciudades: '))
+
+
+
+# for i in range(numCiudades):
+#     ciudades.append(input('Ingresa la ciudad de destino: '))
+
+# print('Las ciudades ingresadas por el usuario son las siguientes: ')
+
+# for n in ciudades:
+#     print(n)
+
+#--------------------------------------------------------------------------------
+
+#PUNTO 10 Y 11
+
+# ciudades.append('Cali')
+# ciudades.pop()
+
+# print(ciudades)
+
+#------------------------------------------------------------------------------------
+
+
+#PUNTO 13
+
+#Importar e Instanciar Objeto de la clase Vehiculo
+
+from Vehiculo import Vehiculo
+
+newVehicle = Vehiculo('ART587', 'Renault', '2021', 90000000)
+
+modelo = newVehicle.getModelo()
+
+print(modelo)
+
 
