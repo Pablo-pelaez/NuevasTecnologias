@@ -53,12 +53,12 @@
 
 #------------------------------------------------------------------------------------
 
-#PUNTO 8 Y 9 Crear una lista, con datos por teclado, 
-# que contenga las ciudades turísticas de Colombia
+#PUNTO 8 Y 9 
+
+#FORMA 1
 
 # ciudades = []
 # numCiudades = int(input('Establece el número de ciudades: '))
-
 
 
 # for i in range(numCiudades):
@@ -69,6 +69,7 @@
 # for n in ciudades:
 #     print(n)
 
+#FORMA 2
 
 # ciudad = ""
 # listaCiudades = []

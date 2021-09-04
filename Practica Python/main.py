@@ -1,16 +1,6 @@
 # from funciones import fibonacci
+from Vehiculo import Vehiculo 
 
-#PUNTO 8 Y 9
-
-ciudad = ""
-listaCiudades = []
-while ciudad != "*":
-    ciudad = input("Ingresa la ciudad: ")
-    if ciudad != "*":
-        listaCiudades.append(ciudad)
-
-print(listaCiudades)
-
-delCiudad = input("Ingrese la ciudad a borrar: ")
-listaCiudades.remove(delCiudad)
-print(listaCiudades)
+ObjVehiculo = Vehiculo("DTF365", "Wolswagen", "2019", 100000000)
+ObjVehiculo.setMarca("Renault Logan")
+print(f"La marca es: {ObjVehiculo.getMarca()}")
