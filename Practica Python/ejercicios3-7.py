@@ -20,7 +20,6 @@
 
 # lista = []
 # lengthNumber = 50
-
 # for i in range(1, lengthNumber+1):
 #         lista.append(i)
 
@@ -30,18 +29,18 @@
 
 #PUNTO 5
 
-# lista = []
+# listaImpar = []
 # lengthNumber = 50
 
 # for n in range(lengthNumber + 1):
 #     if n % 2 == 0 and n > 0:
-#         lista.append(n)
+#         listaImpar.append(n)
 
 # print(lista)
 
 #-------------------------------------------------------------------------------
 
-# PUNTO 6 Y /
+# PUNTO 6 Y 7
 
 # automovil = {
 #     'placa': 'AFT564',
@@ -70,6 +69,20 @@
 # for n in ciudades:
 #     print(n)
 
+
+# ciudad = ""
+# listaCiudades = []
+# while ciudad != "*":
+#     ciudad = input("Ingresa la ciudad: ")
+#     if ciudad != "*":
+#         listaCiudades.append(ciudad)
+
+# print(listaCiudades)
+
+# delCiudad = input("Ingrese la ciudad a borrar: ")
+# listaCiudades.remove(delCiudad)
+# print(listaCiudades)
+
 #--------------------------------------------------------------------------------
 
 #PUNTO 10 Y 11
@@ -86,12 +99,12 @@
 
 #Importar e Instanciar Objeto de la clase Vehiculo
 
-from Vehiculo import Vehiculo
+# from Vehiculo import Vehiculo
 
-newVehicle = Vehiculo('ART587', 'Renault', '2021', 90000000)
+# newVehicle = Vehiculo('ART587', 'Renault', '2021', 90000000)
 
-modelo = newVehicle.getModelo()
+# modelo = newVehicle.getModelo()
 
-print(modelo)
+# print(modelo)
 
 
