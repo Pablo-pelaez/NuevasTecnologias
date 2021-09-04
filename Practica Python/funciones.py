@@ -30,7 +30,6 @@ print(numFactorial(4))
 def fibonacci(nTerms):
     secFibo = [0,1]
     anterior, siguiente = 0,1
-
     for i in range(3, nTerms + 1):
         resultado = anterior + siguiente
         secFibo.append(resultado)

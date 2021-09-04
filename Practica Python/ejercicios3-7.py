@@ -21,8 +21,7 @@
 # lista = []
 # lengthNumber = 50
 
-# for i in range(lengthNumber + 1):
-#     if i > 0:
+# for i in range(1, lengthNumber+1):
 #         lista.append(i)
 
 # print(lista)
