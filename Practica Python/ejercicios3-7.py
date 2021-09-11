@@ -18,7 +18,7 @@
 
 # PUNTO 4
 
-# lista = []
+# lista = [];
 # lengthNumber = 50
 # for i in range(1, lengthNumber+1):
 #         lista.append(i)
