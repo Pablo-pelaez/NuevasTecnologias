@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, redirect, jsonify
-from flask_mysqldb import MySQL
+# from flask_mysqldb import MySQL
 
 #Conexion a la base de datos de MySQL
-
+# cnx = MySQL(app)
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -10,20 +10,20 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'dbflask'
 
-cnx = MySQL(app)
 
-app.route('/customers')
-def listCustomers():
-    dataCustomer = {}
-    try:
-        cursorCustomer = cnx.connection.cursor()
-        query = 'select id, nombre, telefono, correo from cliente'
-        cursorCustomer.excute(query)
-        customers = cursorCustomer.fetchAll()
-        dataCustomer['customers'] = customers
-    except Exception as ex:
-        dataCustomer['message'] = 'Error ...'
-    return jsonify(dataCustomer)
+
+# app.route('/customers')
+# def listCustomers():
+#     dataCustomer = {}
+#     try:
+#         cursorCustomer = cnx.connection.cursor()
+#         query = 'select id, nombre, telefono, correo from cliente'
+#         cursorCustomer.excute(query)
+#         customers = cursorCustomer.fetchall()
+#         dataCustomer['customers'] = customers
+#     except Exception as ex:
+#         dataCustomer['message'] = 'Error ...'
+#     return jsonify(dataCustomer)
 
 
 @app.route('/')
