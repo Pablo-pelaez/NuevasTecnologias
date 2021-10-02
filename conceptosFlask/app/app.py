@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect, jsonify
 # from flask_mysqldb import MySQL
 
 #Conexion a la base de datos de MySQL
-# cnx = MySQL(app)
+# cnx = MySQL(app)  
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
