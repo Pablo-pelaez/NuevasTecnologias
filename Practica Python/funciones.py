@@ -1,35 +1,45 @@
 # def numFactorial(number):
 #     number
 #     factorial = 1
-#     for i in range(1, number+1): !4 = 1,2,3,4
+#     for i in range(1, number+1):
 #         factorial = factorial * i
 #     return factorial  
     
 # print(numFactorial(4))
 
-#-----------------------------------------------------------------------------------------------
-# def fibonacciNumber(nTerms):
+# #-----------------------------------------------------------------------------------------------
+# # def fibonacciNumber(nTerms):
 
-#     def recursiveFibonacci(number):
-#         if number <= 1:
-#             return number
-#         else:
-#             return(recursiveFibonacci(number-1) + recursiveFibonacci(number-2))
+# #     def recursiveFibonacci(number):
+# #         if number <= 1:
+# #             return number
+# #         else:
+# #             return(recursiveFibonacci(number-1) + recursiveFibonacci(number-2))
 
-#     nTerms
+# #     nTerms
 
-#     if nTerms <= 0:
-#         print("Debes ingresar un valor positivo")
-#     else:
-#         print(f"La secuencia de fibonacci con los {nTerms} primeros términos es la siguiente: ")
-#         for i in range(nTerms):
-#             print(recursiveFibonacci(i))
+# #     if nTerms <= 0:
+# #         print("Debes ingresar un valor positivo")
+# #     else:
+# #         print(f"La secuencia de fibonacci con los {nTerms} primeros términos es la siguiente: ")
+# #         for i in range(nTerms):
+# #             print(recursiveFibonacci(i))
 
-# fibonacciNumber(8)
+# # fibonacciNumber(8)
 
-#--------------------------------------------------------------------------------------------------
+# def fibonacci(nTerms):
+#     secFibo = [0,1]
+#     anterior, siguiente = 0,1
+#     for i in range(3, nTerms + 1):
+#         resultado = anterior + siguiente
+#         secFibo.append(resultado)
+#         anterior = siguiente
+#         siguiente = resultado
+#     return secFibo
 
-#Retornar el valor de la cuota de un prestamo, teniendo en cuenta que se debe especificar el valor del préstamo, número de cuotas, tasa mensual
+# #--------------------------------------------------------------------------------------------------
+
+# #Retornar el valor de la cuota de un prestamo, teniendo en cuenta que se debe especificar el valor del préstamo, número de cuotas, tasa mensual
 
 # def cuotaPrestamo(prestamo, nCuotas):
 #     tasaMensual = 0
@@ -53,7 +63,7 @@
 # res = cuotaPrestamo(5000000, 10)
 # print(f"El valor de cada cuota y el total a pagar son los siguientes: {res}")
 
-#--------------------------------------------------------------------------------------------
+# #--------------------------------------------------------------------------------------------
 
 # arrayPeople = [
 #     {
@@ -98,7 +108,7 @@
 
 # mostrarDatos(arrayNumbers)
 
-#------------------------------------------------------------------------------------------------
+# #------------------------------------------------------------------------------------------------
 # diccionarioEstudiuante = {
 #         "ID": "00175",
 #         "name": "Nate",
@@ -116,7 +126,7 @@
 
 # showDictionary(diccionarioEstudiuante)
 
-#---------------------------------------------------------------------------------------------
+# #---------------------------------------------------------------------------------------------
 # dpagos= {
 #     "placa":"tis123",
 #     "marca":"Aveo",
