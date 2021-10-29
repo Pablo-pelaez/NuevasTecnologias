@@ -79,20 +79,28 @@ def invoiceAdd():
     price = request.form['price']
     balance = request.form['balance']
 
-    IDCustomer = int(idCustomer)
-    listIds = []
-    data = customerIds
-
-    for i in range(len(data)):
-        listIds.append(data[i][0]) 
-    newListIds = tuple(listIds)
-
-    response = IDCustomer in newListIds
-    if response:
+    query = validacionCRUD.addingInvoice(idCustomer)
+    if query:
         DBI.insertInvoice(dateInvoice, idCustomer, price, balance)
         return redirect('/invoiceList')
     else:
         return redirect('/addInvoice')
+
+
+    # IDCustomer = int(idCustomer)
+    # listIds = []
+    # data = customerIds
+
+    # for i in range(len(data)):
+    #     listIds.append(data[i][0]) 
+    # newListIds = tuple(listIds)
+
+    # response = IDCustomer in newListIds
+    # if response:
+    #     DBI.insertInvoice(dateInvoice, idCustomer, price, balance)
+    #     return redirect('/invoiceList')
+    # else:
+    #     return redirect('/addInvoice')
 
 @app.route('/editInvoice/<int:number>')
 def editInvoice(number):

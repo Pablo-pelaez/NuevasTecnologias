@@ -23,8 +23,9 @@ def deletingInvoice(number):
     else:
         return False
 
-def addingInvoice(idCustomer, customerIds):
+def addingInvoice(idCustomer):
 
+    IDCustomer = int(idCustomer)
     listIds = []
     data = DBC.getCustomerIds()
 
@@ -32,7 +33,7 @@ def addingInvoice(idCustomer, customerIds):
         listIds.append(data[i][0]) 
     newListIds = tuple(listIds)
 
-    if idCustomer in newListIds:
+    if IDCustomer in newListIds:
         return True
     else:
         return False

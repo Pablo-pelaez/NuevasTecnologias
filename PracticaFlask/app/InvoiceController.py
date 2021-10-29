@@ -1,8 +1,21 @@
 from pymysql import connect, connections
 from dbConfig import getConnection
+import validacionCRUD
 
 
 def insertInvoice(dateInvoice, idCustomer, price, balance):
+    # connection = getConnection()
+    # query = validacionCRUD.addingInvoice(idCustomer)
+    # if query:
+    #     with connection.cursor() as cursor:
+    #         cursor.execute('insert into invoice(dateInvoice, idCustomer, price, balance) values (%s, %s, %s, %s)',
+    #         (dateInvoice, idCustomer, price, balance))
+    #     connection.commit()
+    #     connection.close()
+    #     return True
+    # else:
+    #     return False
+
     connection = getConnection()
     with connection.cursor() as cursor:
         cursor.execute('insert into invoice(dateInvoice, idCustomer, price, balance) values (%s, %s, %s, %s)',
