@@ -94,7 +94,20 @@ def invoiceAdd():
     else:
         return redirect('/addInvoice')
 
-#editar
+@app.route('/editInvoice/<int:number>')
+def editInvoice(number):
+    invoice = DBI.getOneInvoice(number)
+    return render_template('editInvoice.html', invoice=invoice)
+
+@app.route('/invoiceUpdate', methods=['post'])
+def invoiceUpdate():
+    dateInvoice = request.form['dateInvoice']
+    idCustomer = request.form['idCustomer']
+    price = request.form['price']
+    balance = request.form['balance']
+    number = request.form['number']
+    DBI.updateInvoice(dateInvoice, idCustomer, price, balance, number)
+    return redirect('invoiceList')
 
 @app.route('/deleteInvoice', methods=['POST'])
 def deleteInvoice():
@@ -129,19 +142,14 @@ def addI():
 
 @app.route('/update', methods=['POST'])
 def updateInvoices():
-    number = 5
+    number = 7
     date = '2020-11-06'
-    idC = 2
+    idC = 11
     price = 66450
     balance = 0
     DBI.updateInvoice(date, idC, price, balance, number)
     return 'Factura actualizada'
 
-# @app.route('/delete', methods=['post'])
-# def delete():
-#     id = 3
-#     DBI.deleteInvoice(id)
-#     return 'Factura Eliminada'
 
 @app.route('/delC', methods=['POST'])
 def val():
@@ -161,10 +169,6 @@ def delI():
     else:
         return 'No se puede eliminar la factura'
 
-# @app.route('/addI', methods=['POST'])
-# def addI():
-#     data = validacionCRUD.addingInvoice()
-#     return data
 
 if __name__ == "__main__":
     app.run(debug=True, port=3500)

@@ -1,5 +1,5 @@
-{% extends './master.html' %} {% block title %}Creación de Facturas{% endblock
-%} {% block body %}
+{% extends 'master.html' %} {% block title %}Edición de Facturas{% endblock %}
+{% block body %}
 
 <header class="header">
   <nav>
@@ -13,7 +13,7 @@
           >
         </li>
         <li>
-          <a href="http://127.0.0.1:3500/addInvoice">Manejo de Facturas</a>
+          <a href="http://127.0.0.1:3500/addInvoice">Manejo de facturas</a>
         </li>
       </ul>
     </div>
@@ -22,11 +22,11 @@
 <img src="{{url_for('static', filename='img/img1.jpg') }}" class="image" />
 
 <main class="container">
-  <form class="col s12 m12" action="{{url_for('invoiceAdd')}}" method="post">
+  <form class="col s12 m12" action="{{url_for('invoiceUpdate')}}" method="post">
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title center-align"
-          ><b>Crea una nueva factura</b></span
+          ><b>Editar factura</b></span
         >
 
         <div class="row">
@@ -36,6 +36,7 @@
               required
               id="dateInvoice"
               name="dateInvoice"
+              value="{{invoice[1]}}"
               type="date"
               class="validate"
             />
@@ -44,9 +45,10 @@
           <div class="input-field col s6">
             <input
               placeholder="ID Customer"
-              required
+              required readonly
               id="idCustomer"
               name="idCustomer"
+              value="{{invoice[2]}}"
               type="number"
               class="validate"
             />
@@ -61,6 +63,7 @@
               required
               id="price"
               name="price"
+              value="{{invoice[3]}}"
               type="number"
               class="validate"
             />
@@ -72,11 +75,21 @@
               required
               id="balance"
               name="balance"
+              value="{{invoice[4]}}"
               type="number"
               class="validate"
             />
             <label class="active" for="first_name2">Balance</label>
           </div>
+        </div>
+        <div class="input-field col s6">
+          <input required readonly
+          type="number" 
+          id="number" 
+          name="number" 
+          hidden
+          value="{{invoice[0]}}"
+          >
         </div>
       </div>
 
@@ -84,17 +97,16 @@
         <div class="row">
           <button type="submit" class="waves-effect waves-light btn-large teal">
             <i class="material-icons right">add_circle_outline</i>
-            Crear Factura
+            Editar Factura
           </button>
-          <a
+          <!-- <a
             href="http://127.0.0.1:3500/invoiceList"
             class="waves-effect waves-light btn-large #00838f cyan darken-3"
             ><i class="material-icons right">search</i>Consultar Facturas</a
-          >
+          > -->
         </div>
       </div>
     </div>
   </form>
 </main>
-
 {% endblock %}

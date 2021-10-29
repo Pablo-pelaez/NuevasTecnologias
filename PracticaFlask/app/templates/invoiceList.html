@@ -43,7 +43,7 @@ block body %}
         <td>{{invoice[3]}}</td>
         <td>{{invoice[4]}}</td>
         <td>
-          <a href="#" class="btn green"> Editar </a>
+          <a href="{{url_for('editInvoice', number=invoice[0])}}" class="btn green"> Editar </a>
         </td>
         <td>
           <form action="{{url_for('deleteInvoice')}}" method="post">
