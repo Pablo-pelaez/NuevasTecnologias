@@ -9,7 +9,7 @@
         <li><a href="http://127.0.0.1:3500/">Inicio</a></li>
         <li>
           <a href="http://127.0.0.1:3500/addCustomer"
-            >Administrador de facturas</a
+            >Administrador de Clientes</a
           >
         </li>
         <li>
@@ -22,7 +22,7 @@
 <img src="{{url_for('static', filename='img/img1.jpg') }}" class="image" />
 
 <main class="container">
-  <div class="col s12 m12">
+  <form class="col s12 m12" action="{{url_for('invoiceAdd')}}" method="post">
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title center-align"
@@ -33,8 +33,10 @@
           <div class="input-field col s6">
             <input
               placeholder="Invoice Date"
-              id="first_name2"
-              type="text"
+              required
+              id="dateInvoice"
+              name="dateInvoice"
+              type="date"
               class="validate"
             />
             <label class="active" for="first_name2">Invoice Date</label>
@@ -42,8 +44,10 @@
           <div class="input-field col s6">
             <input
               placeholder="ID Customer"
-              id="first_name2"
-              type="text"
+              required
+              id="idCustomer"
+              name="idCustomer"
+              type="number"
               class="validate"
             />
             <label class="active" for="first_name2">ID Customer</label>
@@ -54,8 +58,10 @@
           <div class="input-field col s6">
             <input
               placeholder="Price"
-              id="first_name2"
-              type="text"
+              required
+              id="price"
+              name="price"
+              type="number"
               class="validate"
             />
             <label class="active" for="first_name2">Price</label>
@@ -63,8 +69,10 @@
           <div class="input-field col s6">
             <input
               placeholder="Balance"
-              id="first_name2"
-              type="text"
+              required
+              id="balance"
+              name="balance"
+              type="number"
               class="validate"
             />
             <label class="active" for="first_name2">Balance</label>
@@ -74,10 +82,10 @@
 
       <div class="card-action">
         <div class="row">
-          <a class="waves-effect waves-light btn-large teal"
-            ><i class="material-icons right">add_circle_outline</i>Crear
-            Factura</a
-          >
+          <button type="submit" class="waves-effect waves-light btn-large teal">
+            <i class="material-icons right">add_circle_outline</i>
+            Crear Factura
+          </button>
           <a
             href="http://127.0.0.1:3500/invoiceList"
             class="waves-effect waves-light btn-large #00838f cyan darken-3"
@@ -86,7 +94,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </main>
+
+<h1>{{data}}</h1>
 
 {% endblock %}

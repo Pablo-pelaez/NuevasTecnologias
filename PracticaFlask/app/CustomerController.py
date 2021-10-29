@@ -16,6 +16,22 @@ def getCustomers():
     connection.close()
     return customers
 
+def getOneCustomer(id):
+    connection = getConnection()
+    with connection.cursor() as cursor:
+        cursor.execute('select id, name, status, mobile from customer where id=%s', (id))
+        custom = cursor.fetchone()
+    connection.close()
+    return custom
+
+def getCustomerIds():
+    connection = getConnection()
+    with connection.cursor() as cursor:
+        cursor.execute('select id from customer')
+        customerIds = cursor.fetchall()
+    connection.close()
+    return customerIds
+
 def updateCustomer(name, status, mobile, id):
     connection = getConnection()
     with connection.cursor() as cursor:
@@ -26,6 +42,6 @@ def updateCustomer(name, status, mobile, id):
 def deleteCustomer(id):
     connection = getConnection()
     with connection.cursor() as cursor:
-        cursor.execute('delete from customer where id=%s' (id))
+        cursor.execute('delete from customer where id= %s', (id))
     connection.commit()
     connection.close()

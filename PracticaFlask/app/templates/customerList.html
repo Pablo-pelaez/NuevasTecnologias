@@ -1,4 +1,5 @@
-{% extends 'master.html' %} {% block title %}Lista de Usuarios{% endblock %} {% block body %}
+{% extends 'master.html' %} {% block title %}Lista de Usuarios{% endblock %} {%
+block body %}
 <header class="header">
   <nav>
     <div class="nav-wrapper #00695c teal darken-3">
@@ -6,12 +7,12 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="http://127.0.0.1:3500/">Inicio</a></li>
         <li>
-          <a href="http://127.0.0.1:3500/addCustomer">Administrador de facturas</a>
+          <a href="http://127.0.0.1:3500/addCustomer"
+            >Administrador de Clientes</a
+          >
         </li>
         <li>
-          <a href="http://127.0.0.1:3500/addInvoice"
-            >Manejo de facturas</a
-          >
+          <a href="http://127.0.0.1:3500/addInvoice">Manejo de facturas</a>
         </li>
       </ul>
     </div>
@@ -25,99 +26,38 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Item Name</th>
-        <th>Item Price</th>
-        
+        <th>Customer Name</th>
+        <th>Status</th>
+        <th>Mobile Number</th>
       </tr>
     </thead>
 
     <tbody>
       {% for customer in customers %}
-        <tr>
-          <td>{{customer[0]}}</td>
-          <td>{{customer[1]}}</td>
-          <td>{{customer[2]}}</td>
-          <td>{{customer[3]}}</td>
-          <td><a href="#idModal" class="btn modal-trigger green">Editar</a>
-
-            <div id="idModal" class="modal">
-              <div class="modal-content">
-                <form class="col s12 m12" action="{{url_for('customerUpdate', id=customer[0])}}" method="post">
-                  <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                      <span class="card-title center-align"
-                        ><b>Edición del cliente</b></span
-                      >
-          
-                      <div class="row">
-                        <div class="input-field col s6">
-                          <input
-                            placeholder="Customer name"
-                            required
-                            value="{{customer}}"
-                            id="name"
-                            name="name"
-                            type="text"
-                            class="validate"
-                          />
-                          <label class="active" for="first_name2">Customer name</label>
-                        </div>
-                        <div class="input-field col s6">
-                          <input
-                            placeholder="Status"
-                            required
-                            id="status"
-                            name="status"
-                            type="number"
-                            max="1"
-                            min="0"
-                            class="validate"
-                          />
-                          <label class="active" for="first_name2">Status</label>
-                        </div>
-                      </div>
-                      <div class="input-field col s6">
-                        <input
-                          placeholder="Mobile number"
-                          required
-                          id="mobile"
-                          name="mobile"
-                          type="number"
-                          class="validate"
-                        />
-                        <label class="active" for="first_name2">Mobile number</label>
-                      </div>
-                      <div class="input-field col s6">
-                        <input type="text" id="id" name="id" value="{{customer}}">
-                      </div>
-                    </div>
-          
-                    <div class="card-action">
-                      <div class="row">
-                        <button type="submit" class="waves-effect waves-light btn-large teal">
-                          <i class="material-icons right">add_circle_outline</i>
-                          Editar Cliente
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div></td>
-        <td><a href="" class="btn red">Eliminar</a></td>
-        </tr>
+      <tr>
+        <td>{{customer[0]}}</td>
+        <td>{{customer[1]}}</td>
+        <td>{{customer[2]}}</td>
+        <td>{{customer[3]}}</td>
+        <td>
+          <a
+            href="{{url_for('editCustomer', id=customer[0])}}"
+            class="btn green"
+          >
+            Editar
+          </a>
+        </td>
+        <td>
+          <form action="{{url_for('deleteCustomer')}}" method="post">
+            <input type="hidden" name="id" value="{{customer[0]}}" />
+            <button class="btn red">Eliminar</button>
+          </form>
+          <!-- <a class="btn red" href="{{url_for('deleteCustomer', id=customer[0])}}">Eliminar</a> -->
+        </td>
+      </tr>
 
       {% endfor %}
     </tbody>
   </table>
 </main>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var elems = document.querySelectorAll(".modal");
-    var instances = M.Modal.init(elems);
-  });
-</script>
 {% endblock %}
-
-
