@@ -1,0 +1,55 @@
+{% extends './master.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <section class="section">
+        <div class="columns">
+            <div class="column">
+                <h3 class="is-size-3">Usuarios</h3>
+                <a href="{{url_for('formAddUser')}}" class="btn btn-primary">Agregar</a>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo Electrónico</th>
+                            <th>|Editar| |Eliminar|</th>
+                            <!-- <th>Eliminar</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{user[0]}}</td>
+                            <td>{{user[1]}}</td>
+                            <td>{{user[2]}}</td>
+                            <td>
+                                {# Pasar el id (lo que hay en user[0] #}
+                                <a href="{{url_for('editUser', id=user[0])}}"
+                                    class="btn btn-success">Editar</a>
+                                    <!-- <form action="{{url_for('editUser')}}" method="POST">
+                                        <input type="text" name="id" value="{{user[0]}}">
+                                        <button class="btn btn-success">Editar</button>
+                                    </form> -->
+                            </td>
+                            <td>
+                                <form action="{{url_for('deleteUser')}}" method="POST"
+                                    onSubmit="return confirm('Está seguro de eliminar este usuario?');">
+                                    <input type="text" name="id" value="{{user[0]}}">
+                                    <!-- <button class="btn btn-success"><a href="{{url_for('editUser', id=user[0])}}"></a>Editar</button> -->
+                                    <button class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

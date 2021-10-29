@@ -1,0 +1,35 @@
+{% extends './master.html' %}
+
+{% block title %} Editar Usuario {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <section class="section">
+        <div class="columns">
+            <div class="column">
+                <h3 class="is-size-3">Editar Usuario</h3>
+                <form action="{{url_for('updateUser')}}" method="post">
+                    {# Enviar el id en un campo oculto #}
+                    <input type="hidden" name="id" value="{{user[0]}}">
+
+                    <label for="nombre">Nombre:</label>
+                    <input value="{{user[1]}}" required type="text" class="form-control" placeholder="Nombre"
+                        name="name" id="name">
+
+                    <label for="email">Correo Electrónico</label>
+                    <input value="{{user[2]}}" required type="text" class="form-control"
+                        placeholder="Correo Electrónico" name="email" id="email">
+                    <label for="password">Contraseña</label>
+                    <input required type="password" class="form-control" placeholder="Contraseña" name="password" <br>
+
+                    <br>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

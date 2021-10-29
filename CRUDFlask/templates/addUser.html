@@ -1,0 +1,28 @@
+{% extends './master.html' %}
+
+{% block title %} Agregar Usuario {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <section class="section">
+        <div class="columns">
+            <div class="column is-one-third">
+                <h3 class="is-size-3">Agregar Usuario</h3>
+                <form action="{{url_for('saveUser')}}" method="post">
+                    <label for="nombre">Nombre:</label>
+                    <input required type="text" class="form-control" placeholder="Nombre" name="name" id="name">
+                    <label for="email">Correo Electrónico</label>
+                    <input required type="text" class="form-control" placeholder="Correo Electrónico" name="email"
+                        id="email">
+                    <label for="password">Contraseña</label>
+                    <input required type="password" class="form-control" placeholder="Contraseña" name="password" <br>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
