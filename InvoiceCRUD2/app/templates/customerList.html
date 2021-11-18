@@ -1,0 +1,55 @@
+{% extends 'master.html' %} {% block title %}Lista de Usuarios{% endblock %} {%
+block body %}
+
+<main class="container">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class=flashes>
+    {% for message in messages %}
+    <p class="text-error">{{ message }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  <h2 class="mt-2">Lista de clientes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Customer Name</th>
+        <th>Status</th>
+        <th>Mobile Number</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for customer in customers %}
+      <tr>
+        <td>{{customer[0]}}</td>
+        <td>{{customer[1]}}</td>
+        <td>{{customer[2]}}</td>
+        <td>{{customer[3]}}</td>
+        <td>
+          <a href="{{url_for('editCustomer', id=customer[0])}}" class="btn green">
+            Editar
+          </a>
+        </td>
+        <td>
+          <form action="{{url_for('deleteCustomer')}}" method="post">
+            <input type="hidden" name="id" value="{{customer[0]}}" />
+            <button class="btn red">Eliminar</button>
+          </form>
+          <!-- <a class="btn red" href="{{url_for('deleteCustomer', id=customer[0])}}">Eliminar</a> -->
+        </td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</main>
+
+<script>
+  
+</script>
+{% endblock %}
