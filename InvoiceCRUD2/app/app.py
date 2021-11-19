@@ -1,4 +1,5 @@
 from os import name
+import os
 from flask import Flask, app, render_template, request, redirect, flash, session
 import CustomerController
 import InvoiceController
@@ -10,15 +11,16 @@ DB = CustomerController
 DBI = InvoiceController
 DBU = UserController
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
-
+app.config['IMAGE_UPLOADS'] = 'D:/NuevasTecnologias/InvoiceCRUD2/app/static/img'
 
 @app.route('/registerUser', methods=['post'])
 def registerUser():
     name = request.form['name']
     email = request.form['email']
     password = request.form['password']
-    photo = request.form['photo']
+    photo = request.files['photo']
+    
+    photo.save(os.path.join(app.config['IMAGE_UPLOADS'], photo.filename))
     
     query = validacionCRUD.existEmail(email)
     if query:
@@ -61,6 +63,10 @@ def index():
 def logIn():
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
 
 @app.route('/addCustomer')
 def addCustomer():
@@ -72,28 +78,17 @@ def addCustomer():
 
 @app.route('/customerList')
 def customerList():
-    if 'email' and 'password' in session:
-        customers = DB.getCustomers()
-        return render_template('customerList.html', customers=customers)
-    else:
-        return redirect('/login')
-    
+    customers = DB.getCustomers()
+    return render_template('customerList.html', customers=customers)
 
 @app.route('/invoiceList')
 def invoiceList():
-    if 'email' and 'password' in session:
-        invoices = DBI.getInvoices()
-        return render_template('invoiceList.html', invoices=invoices)
-    else:
-        return redirect('/login')
-
+    invoices = DBI.getInvoices()
+    return render_template('invoiceList.html', invoices=invoices)
 
 @app.route('/addInvoice')
 def addInvoice():
-    if 'email' and 'password' in session:
-        return render_template('addInvoice.html')
-    else:
-        return redirect('/login')
+    return render_template('addInvoice.html')
 
 
 @app.route('/register')
@@ -126,7 +121,7 @@ def customerUpdate():
     id = request.form['id']
     DB.updateCustomer(name, status, mobile, id)
     return redirect('/customerList')
-
+#Refactorizar con la validacion
 
 @app.route('/deleteCustomer', methods=['POST'])
 def deleteCustomer(): 
@@ -139,11 +134,7 @@ def deleteCustomer():
     else:
         flash('No se puede eliminar el cliente')
         return redirect('customerList')
-    
-@app.route('/logout')
-def logout():
-    session.clear()
-    return redirect('/login')
+#Refactorizar con la validacion
 
 #--------------------------------------------------------------------
 
