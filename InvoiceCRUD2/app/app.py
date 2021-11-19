@@ -1,5 +1,5 @@
 from os import name
-from flask import Flask, app, render_template, request, redirect, flash
+from flask import Flask, app, render_template, request, redirect, flash, session
 import CustomerController
 import InvoiceController
 import validacionCRUD
@@ -12,7 +12,7 @@ DBU = UserController
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
-# !Validar errores y redireccionar
+
 @app.route('/registerUser', methods=['post'])
 def registerUser():
     name = request.form['name']
@@ -28,8 +28,7 @@ def registerUser():
         DBU.register(name, email, password, photo)
         return redirect('/')
     
-# !Validar errores y redireccionar
-#? Validar con sesiones
+
 @app.route('/loginUser', methods=['post'])
 def loginUser():
     name = None
@@ -38,6 +37,8 @@ def loginUser():
     query = validacionCRUD.verifyCredentials(email, password)
     
     if query:
+        session['email'] = email
+        session['password'] = password
         data = (DBU.getEmails())
         for i in range(len(data)):
             name = data[i][1]
@@ -51,30 +52,49 @@ def loginUser():
 #Rutas de navegacion frontend
 @app.route('/')
 def index():
+    if 'email' and 'password' in session:
+        return render_template('index.html')
+    else:
+        return redirect('/login')   
+
+@app.route('/login')
+def logIn():
     return render_template('login.html')
+
 
 @app.route('/addCustomer')
 def addCustomer():
-    return render_template('addCustomer.html')    
+    if 'email' and 'password' in session:
+        return render_template('addCustomer.html') 
+    else:
+        return redirect('/login')  
 
 
 @app.route('/customerList')
 def customerList():
-    customers = DB.getCustomers()
-    return render_template('customerList.html', customers=customers)
+    if 'email' and 'password' in session:
+        customers = DB.getCustomers()
+        return render_template('customerList.html', customers=customers)
+    else:
+        return redirect('/login')
+    
 
 @app.route('/invoiceList')
 def invoiceList():
-    invoices = DBI.getInvoices()
-    return render_template('invoiceList.html', invoices=invoices)
+    if 'email' and 'password' in session:
+        invoices = DBI.getInvoices()
+        return render_template('invoiceList.html', invoices=invoices)
+    else:
+        return redirect('/login')
+
 
 @app.route('/addInvoice')
 def addInvoice():
-    return render_template('addInvoice.html')
+    if 'email' and 'password' in session:
+        return render_template('addInvoice.html')
+    else:
+        return redirect('/login')
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 @app.route('/register')
 def register():
@@ -106,7 +126,7 @@ def customerUpdate():
     id = request.form['id']
     DB.updateCustomer(name, status, mobile, id)
     return redirect('/customerList')
-#Refactorizar con la validacion
+
 
 @app.route('/deleteCustomer', methods=['POST'])
 def deleteCustomer(): 
@@ -119,7 +139,11 @@ def deleteCustomer():
     else:
         flash('No se puede eliminar el cliente')
         return redirect('customerList')
-#Refactorizar con la validacion
+    
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
 
 #--------------------------------------------------------------------
 
